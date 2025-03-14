@@ -19,10 +19,10 @@ time_infor.train_length = 20000500;
 time_infor.val_length = 200000;
 time_infor.time_length = 20401200;
 
-% 无噪声的数据
+% no_distur
 [control_infor, output_infor] = func_validate(traj_type,bridge_type,properties,dim_in,time_infor,dt,plot_movie,traj_frequency);
 
-% 有噪声的数据
+% with_distur
 % [control_infor, output_infor] = func_validate_with_distur(traj_type,bridge_type,properties,dim_in,time_infor,dt,plot_movie,traj_frequency);
 % update
 data_pred=output_infor.data_pred;
@@ -41,8 +41,8 @@ delta_u1 = control_infor.delta_u1;
 error = control_infor.error;
 delta_error = control_infor.delta_error;
 
-% 2024.2.25 在贵阳回成都的高铁上
-% 有噪声的数据
+
+% with_distur
 control_infor = struct('q_control', q_control, 'qdt_control', qdt_control, ... 
     'q2dt_control', q2dt_control, 'tau_control', tau_control, 'data_control',data_control,...
     'q_pred', q_pred, 'qdt_pred', qdt_pred, ... 
@@ -55,7 +55,7 @@ with_infor = control_infor;
 % save(['./comparitive_data/meefnn_data/03meefnn_circle', '.mat'], 'control_infor')
 % save(['./comparitive_data/meefnn_data/04meefnn_fermat', '.mat'], 'control_infor')
 
-% 无噪声的数据
+% no_distur
 % no_infor = struct('q_control', q_control, 'qdt_control', qdt_control, ... 
 %     'q2dt_control', q2dt_control, 'tau_control', tau_control, 'data_control',data_control,...
 %     'q_pred', q_pred, 'qdt_pred', qdt_pred, ... 

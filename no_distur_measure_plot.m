@@ -30,7 +30,6 @@ q2dt_control=control_infor.q2dt_control;
 tau_control=control_infor.tau_control;
 data_control=control_infor.data_control;
 
-% 离线框图里面的轨迹作图
 % figure();
 % hold on
 % plot(data_control(start_time:end_time, 1), data_control(start_time:end_time, 2), 'Color',[0.4078    0.4941    1.0000],'LineWidth',1);

@@ -1,15 +1,15 @@
 function [delta_u,e,edt] = adjustment(yd,y)
    alpha = 0.05;
    dt = 0.001;
-   e = sum(yd - y); % 这里用sum,将向量转为一个常值
-   edt = sum(yd * dt - y * dt); % 这里怎么表示, 这里用差分法表示一个数的导数
+   e = sum(yd - y); 
+   edt = sum(yd * dt - y * dt); 
    delta_u = alpha * output(e,edt);
 end
 
-% 1、先计算隶属度MF 2、根据隶属度，计算解模糊化输出 3、计算最终的delta_u
+
 function [muu] = mu(x,k) 
     a0 = -inf; a1 = -1; a2 = 0; a3 = 1; a4 = inf;
-    if k == 1  % k=1
+    if k == 1  
         if x < a0
             muu = 0;
         elseif x >= a0 && x <= a1
@@ -19,7 +19,7 @@ function [muu] = mu(x,k)
         elseif x > a2
             muu = 0;
         end
-    elseif k == 2 % k=2
+    elseif k == 2 
         if x < a1
             muu = 0;
         elseif x >= a1 && x <= a2
@@ -29,7 +29,7 @@ function [muu] = mu(x,k)
         elseif x > a3
             muu = 0;
         end
-    else  % k=3  没有用到，只用到了k=1,2
+    else  
         if x < a2
             muu = 0;
         elseif x >= a2 && x <= a3

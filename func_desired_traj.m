@@ -71,7 +71,6 @@ elseif strcmp(traj_type, 'epitrochoid')
     y = y(1:2*val_length+1);
 
 elseif strcmp(traj_type, 'fermat')
-%     f = 100; 之前是100，改为下面的200
     f = 200;
     a = 0.5;
     theta = 2 * pi * t * 1 / f;

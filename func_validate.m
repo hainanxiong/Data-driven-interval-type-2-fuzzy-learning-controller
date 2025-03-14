@@ -5,7 +5,7 @@ function [control_infor,output_infor] = func_validate(traj_type,bridge_type,prop
 
 u=zeros(dim_in,1);
 
-val_length=200000;% 记得val_length=200000
+val_length=200000;
 q_control=zeros(val_length+100, 2);
 qdt_control=zeros(val_length+100, 2);
 q2dt_control=zeros(val_length+100, 2);
@@ -59,7 +59,7 @@ data_pred = data_control;
 
 % generate gaussian noise matrix for noise testing
 rng((now*1000-floor(now*1000))*100000)
-% 有噪声的数据
+
 disturbance_failure = zeros(2, val_length);
 measurement_failure = zeros(round(dim_in/2), val_length);
 
@@ -76,15 +76,13 @@ load('./IT2FCM-Offline/tao2_weight/tao2_vr.mat');
 delta_u = 0;
 u_c = 0;
 for t_i = 1:val_length-3
-    % 测试模型
-    train_x = u';  % train_x系统内部状态
+    train_x = u';  
     data2 = train_x(:,:);
     
-    % 根据模糊训练好的权重，计算预测阶段的输出
-    tao_2 = compute_tao(vl2,vr2,data2,G2); % 这里的G相当于后件参数a
-    % 在线调整
-    tao_2 = tao_2 + delta_u * tao_2; % tao相当于u
-    % 在线补偿
+    tao_2 = compute_tao(vl2,vr2,data2,G2); 
+
+    tao_2 = tao_2 + delta_u * tao_2; 
+
     tao_2 = tao_2 + u_c;
     predict_value = tao_2';
 
@@ -136,18 +134,16 @@ for t_i = 1:val_length-3
     y_pred_measurement = y_pred + y_measurement_f_value;
     qdt_pred_measurement = qdt_pred(time_now+1, :) + qdt_measurement_f_value;
 
-    %%% 计算出来的前一时刻的预测值等于下一时刻的预测值
     data_pred(time_now+1,:)=[x_pred, y_pred];
 
     if input_infor_label == 1
-        % 这里的u相当于期望的输出y
         u(1:2) = [x_pred_measurement;y_pred_measurement]; % Cartesian coordinates of the end effector
         u(3:4) = data_control(time_now+2,:);  % The Cartesian coordinates of the end effector%
         u(5:6) = qdt_pred_measurement;        % dot q
-        u(7:8) = qdt_control(time_now+2,:);   % 下一时刻的 dot q
+        u(7:8) = qdt_control(time_now+2,:);   
         y = u';
     end
-    [delta_u,e,edt] = adjustment(train_x,y); % yd：期望信号；y：系统真实输出
+    [delta_u,e,edt] = adjustment(train_x,y); 
     delta_u1(time_now,:) = delta_u;
     error(time_now,:) = e;
     delta_error(time_now,:) = edt;

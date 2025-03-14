@@ -52,7 +52,7 @@ q2dt_controlrc=rc_infor.q2dt_control;
 tau_controlrc=rc_infor.tau_control;
 data_controlrc=rc_infor.data_control;
 
-% reference trajectory 误差 C_x方向
+% reference trajectory 
 figure();
 hold on
 % plot(data_control(start_time:end_time, 1)-data_pred(start_time:end_time, 1), data_control(start_time:end_time, 2)-data_pred(start_time:end_time, 2),'Color',[0.5255    0.7137    0.9647],'LineWidth', 1.5);
@@ -60,34 +60,30 @@ hold on
  plot(start_time:end_time,data_controlrc(start_time:end_time, 1)-data_predrc(start_time:end_time, 1),'LineWidth', 2.5);
 % plot(data_controlrc(start_time:end_time, 1)-data_predrc(start_time:end_time, 1), data_controlrc(start_time:end_time, 2)-data_predrc(start_time:end_time, 2),'Color',[0.5255    0.2902    0.9765],'LineWidth', 1.5);
 
-% 获取当前坐标轴句柄
 ax = gca;
 
-% 设置x轴和y轴刻度加粗
-set(ax, 'FontSize', 16); % 使坐标轴上的字体加粗
-set(ax, 'XColor', 'k', 'LineWidth', 1); % 使坐标轴加粗
+set(ax, 'FontSize', 16); 
+set(ax, 'XColor', 'k', 'LineWidth', 1); 
 
-xlabel('','fontsize',16,'fontname','Times','FontWeight','bold')	%设置x轴字体
-% ylabel('Tracking error of x-axis ','fontsize',16,'fontname','Times')	%设置y轴字体
+xlabel('','fontsize',16,'fontname','Times','FontWeight','bold')	
+% ylabel('Tracking error of x-axis ','fontsize',16,'fontname','Times')	
 legend('OIT2-FCM', 'RC')
 box on
 
-% reference trajectory 误差 C_y方向
+% reference trajectory 
 figure();
 hold on
 % plot(data_control(start_time:end_time, 1)-data_pred(start_time:end_time, 1), data_control(start_time:end_time, 2)-data_pred(start_time:end_time, 2),'Color',[0.5255    0.7137    0.9647],'LineWidth', 1.5);
  plot(start_time:end_time,data_control(start_time:end_time, 2)-data_pred(start_time:end_time, 2),'LineWidth', 2.5);
  plot(start_time:end_time,data_controlrc(start_time:end_time, 2)-data_predrc(start_time:end_time, 2),'LineWidth', 2.5);
 % plot(data_controlrc(start_time:end_time, 1)-data_predrc(start_time:end_time, 1), data_controlrc(start_time:end_time, 2)-data_predrc(start_time:end_time, 2),'Color',[0.5255    0.2902    0.9765],'LineWidth', 1.5);
-% 获取当前坐标轴句柄
 ax = gca;
 
-% 设置x轴和y轴刻度加粗
-set(ax, 'FontSize', 16); % 使坐标轴上的字体加粗
-set(ax, 'XColor', 'k', 'LineWidth', 1); % 使坐标轴加粗
+set(ax, 'FontSize', 16); 
+set(ax, 'XColor', 'k', 'LineWidth', 1); 
 
-xlabel('Time(sec)','fontsize',16,'fontname','Times','FontWeight','bold')	%设置x轴字体
-% ylabel('Tracking error of y-axis ','fontsize',16,'fontname','Times')	%设置y轴字体
+xlabel('Time(sec)','fontsize',16,'fontname','Times','FontWeight','bold')	
+% ylabel('Tracking error of y-axis ','fontsize',16,'fontname','Times')	
 legend('OIT2-FCM', 'RC')
 box on
 

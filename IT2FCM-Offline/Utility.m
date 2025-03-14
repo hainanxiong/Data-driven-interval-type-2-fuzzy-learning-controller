@@ -45,14 +45,13 @@ classdef Utility
             % Calculating distance of jth point from ith center
             for i=1:c
                 for j=1:length(X)
-                    dist(j,i) = norm( X(j,:) - V(i,:) ); % norm 范数
+                    dist(j,i) = norm( X(j,:) - V(i,:) ); 
                 end
             end
-            % Calclulating uij 计算模糊隶属度矩阵 U 表示每个数据点属于每个聚类中心的隶属度。
             for i=1:c
                 for j=1:length(X)
-                    if( dist(j,i) == 0 ) % 数据点和中心重合 
-                        U(i,j) = 1;      % 该点的隶属度设为1
+                    if( dist(j,i) == 0 ) 
+                        U(i,j) = 1;      
                         continue;
                     end
 
@@ -75,21 +74,19 @@ classdef Utility
             end
         end
         
-        % 计算单个数据点，一个点进来也能计算
         function [U,dist] = cal_single_U(X,V,m,c)
             dist = zeros(size(X,1),c);
             U = zeros(c,size(X,1));
             % Calculating distance of jth point from ith center
             for i=1:c
                 for j=1:size(X,1)
-                    dist(j,i) = norm( X(j,:) - V(i,:) ); % norm 范数
+                    dist(j,i) = norm( X(j,:) - V(i,:) ); 
                 end
             end
-            % Calclulating uij 计算模糊隶属度矩阵 U 表示每个数据点属于每个聚类中心的隶属度。
             for i=1:c
                 for j=1:size(X,1)
-                    if( dist(j,i) == 0 ) % 数据点和中心重合 
-                        U(i,j) = 1;      % 该点的隶属度设为1
+                    if( dist(j,i) == 0 )
+                        U(i,j) = 1;    
                         continue;
                     end
 
